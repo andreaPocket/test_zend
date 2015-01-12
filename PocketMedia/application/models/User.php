@@ -7,6 +7,7 @@ class Application_Model_User
 	protected $_password;
 	protected $_type;
     protected $_id;
+	protected $_id2;
  
     public function __construct(array $options = null)
     {
