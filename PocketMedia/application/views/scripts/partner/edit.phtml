@@ -1,0 +1,22 @@
+<?php
+echo $this->render('menu.phtml');
+$this->form->setAction($this->url());
+?>
+
+<div class="partner-form form-cnt">
+	<h2 class=form-title><?php echo($this->newEntry)?'Add Partner':'Change Partner';?></h2>
+	<?php echo $this->form; ?>
+</div>
+
+<script>
+$( document ).ready(function() {
+	function checkform() 
+	{
+		if(confirm('Are you sure that you want to delete this partner?') == true){
+			return true;
+		}
+		return false;
+	}
+	$('#delete').click(checkform);
+});
+</script>

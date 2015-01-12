@@ -1,0 +1,12 @@
+<?php
+/*Prepares 'pager' for the passed number of pages*/
+function getPagerHtml ($numPage) {
+			$pagerHtml='<div class="row pager"><p>Page <span class="actualPage">1 </span>of '.$numPage.'</p><ul><li class="pager-dir previous">&lt;&lt; Previous</li>';
+			for($i=1; $i<=$numPage; $i++){
+				$pagerHtml.='<li class="page'.$i.'">'.$i.'</li>';
+			}
+			$pagerHtml.='<li class="pager-dir next">Next &gt;&gt;</li></ul></div>';
+			return $pagerHtml;
+}
+?>
+<script type="text/javascript" src="/js/pager.js"></script>

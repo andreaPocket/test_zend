@@ -1,0 +1,19 @@
+
+<!--Welcome and logout-->
+<?php if($this->loggedUser) {?>
+	<div class="user-menu"><p>Welcome <?php echo $this->loggedUser->name ?> ! | <a  href="<?php echo $this->url(array('controller'=>'index', 'action'=>'logout'),'default',true)?>">Logout</a></p></div>
+<?php } ?>
+
+
+<div class="menu">
+	<!-- fill menu just for signed user -->
+	<?php if($this->loggedUser) {?>
+			<ul>
+				<li><a href="<?php echo $this->url(array('controller'=>'partner'),'default',true)?>">Partners</a></li>
+				<!-- menu options just for admin user -->
+				<?php if($this->loggedUser->user_type == 'admin') {?>
+					<li><a href="<?php echo $this->url(array('controller'=>'user'),'default',true) ?>">Users</a></li>
+				<?php } ?>
+			</ul>
+	<?php } ?>
+</div>

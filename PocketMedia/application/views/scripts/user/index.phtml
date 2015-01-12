@@ -1,0 +1,57 @@
+<?php echo $this->render('menu.phtml'); ?>
+<?php echo $this->render('pager_helper.phtml'); ?>
+
+<?php 
+	$perPage=10;
+	$onPage=0;
+	$pages=0;
+	$dataHtml='';
+	foreach ($this->users as $entry){
+		if($onPage==0) {
+			$pages++;
+			$dataHtml.='<div id="page'.$pages.'" class="data-page">';
+		}
+		$onPage++;
+		$eo= ($onPage % 2 == 0)?'even':'odd';
+		$dataHtml.='<div class="row data-row '.$eo.'"><p class="column1 data-id">'.$this->escape($entry->id).'</p>';
+		$dataHtml.='<p class="column2 data-name">'.$this->escape($entry->name).'</p>';
+		$dataHtml.='<p class="column3 data-email">'.$this->escape($entry->user_type).'</p>';
+		$dataHtml.='<p class="column4 data-edit"><a href="'.$this->url( array( 'controller' => 'user', 'action'  => 'edit'), 'default', true).'?id='.$this->escape($entry->id).'">Edit</a></p></div>';
+		if($onPage>=$perPage) {
+			$dataHtml.='</div>';
+			$onPage=0;
+		}	
+	} 
+	if($onPage!=0) {
+		$dataHtml.='</div>';
+	}
+	$pagerHtml=getPagerHtml($pages);
+?>
+
+<div class="display-cnt display-cnt-users">
+	<div class="row display-header">
+		<p>Users</p>
+		<a href="<?php echo $this->url( array( 'controller' => 'user', 'action'  => 'edit'), 'default', true) ?>">Add User +</a>
+	</div>
+	<div class="display-data">
+		<?php echo $pagerHtml ?>
+		<div class=" row column-names">
+			<p class="column1">Id</p>
+			<p class="column2">User Name</p>
+			<p class="column3">Type</p>
+		</div>
+		
+		<div class="data-block">
+			<?php echo $dataHtml ?>
+		</div>
+		<?php echo $pagerHtml ?>
+	</div>
+
+
+</div>
+
+<script>
+$(document).ready(function(){
+	changePage(1);
+});
+</script>

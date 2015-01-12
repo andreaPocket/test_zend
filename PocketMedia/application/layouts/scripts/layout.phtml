@@ -1,0 +1,20 @@
+    <!-- application/layouts/scripts/layout.phtml -->
+    <?php echo $this->doctype() ?>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Pocket Media PArtner CRM</title>
+      <?php echo $this->headLink()->appendStylesheet('/css/common.css') ?>
+	  <?php echo $this->headScript()->appendFile('/js/jquery-1.11.1.min.js') ?> 
+    </head>
+    <body>
+    <header>
+        <div id="header-logo">
+		<img alt="Pocket Media Logo" src="../images/PocketMediaLogo.png"/>
+        </div>
+    </header>
+     
+    <?php echo $this->layout()->content ?>
+     
+    </body>
+    </html>
